@@ -1,4 +1,7 @@
 # Supply-Chain-Heuristics
+
+Developed a heuristic optimisation in Python, with AI-assisted development, to redesign warehouse-to-store allocation for a major Portuguese corporation, cutting projected store labour by 66% and identifying €3.3M in projected annual savings.
+
 order to run the scripts:
 1 - clean_data
 2 - run_monthly_optimization
