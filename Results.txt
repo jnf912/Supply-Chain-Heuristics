@@ -1,0 +1,193 @@
+==================================================
+       DATA CONSISTENCY REPORT
+==================================================
+-> 659 SKUs with average stock of 0
+-> 280 SKUs with unit volume < 5 cm3
+-> 2 Active SKUs > 32 dm3 (Will be imputed to 32L)
+-> 5 SKUs appear twice in SKU Master
+-> 10,446 SKUs don't appear in any order
+
+==================================================
+      WAREHOUSE OPTIMIZATION REPORT (MONTHLY)
+==================================================
+
+--- Storage Utilization (Bin Count) ---
+   Bin Type  Used  Capacity Utilization
+   FP_Small   350       350      100.0%
+     FP_Med   700       700      100.0%
+   FP_Large  1500      1500      100.0%
+Shelf_Small 20892     27000       77.4%
+Shelf_Large   786      4000       19.7%
+ Rack_Small   497      1500       33.1%
+   Rack_Med  1000      1000      100.0%
+ Rack_Large   150       150      100.0%
+
+--- Workforce Utilization (Monthly Hours) ---
+           Area  Limit Hours Used Hours Utilization
+Forward Picking       3168.0     3166.8      100.0%
+          Racks       3168.0     2865.0       90.4%
+        Shelves       9240.0      837.2        9.1%
+
+--- Operational Breakdown ---
+Total Monthly Cost: €68,690.82
+------------------------------
+Picking:              95.1%  (€65,319.49)
+Replenishment Total:  4.9%  (€3,371.33)
+  > From Inbound:     4.5%  (€3,059.33)
+  > From Reserve:     0.5%  (€312.00)
+
+========================================
+ FINAL RESULTS (BATCH PICKING - ROBUST V2)
+========================================
+Total Store Cost:      €257,290.15
+Total Replen Hours:    21,440.8 h
+--------------------
+Total Totes Shipped:   60,253
+  > Small Totes:       7,985
+  > Big Totes:         52,268
+--------------------
+Pure Totes:            39,231 (65.1%)
+Gross Fill Rate:       63.2%
+
+==================================================
+ SCENARIO COMPARISON (BATCH PICKING MODE - ROBUST)
+==================================================
+               Scenario  Store Cost (€)  Total Totes  Fill Rate %  Pure Totes %
+ Global Velocity (Base)      356,249.47       238166        16.01         64.39
+Smart Family (Proposed)      257,290.15        60253        63.16         65.11
+--------------------------------------------------
+STORE COST SAVINGS:  €98,959.32
+TOTE REDUCTION:      177,913 totes
+
+========================================
+ FINAL RESULTS (PURE TOTE STRATEGY - ROBUST)
+========================================
+Total Store Cost:      €109,135.20
+Total Replen Hours:    9,094.6 h
+--------------------
+Total Totes Shipped:   93,876
+  > Small Totes:       10,399
+  > Big Totes:         83,477
+--------------------
+Pure Totes:            93,876 (100.0%)
+Gross Fill Rate:       40.2%
+
+
+===================================================
+--- SENSITIVITY RESULTS (Refined Scale, Robust) ---
+===================================================
+--- 1. DETAILED SIMULATION RESULTS ---
+Threshold  Store Cost (€)  Replen Hours  Total Totes  Fill Rate %  Pure %
+       0%       109,135.2       9,094.6        93876         40.2   100.0
+      20%       138,895.2      11,574.6        72178         52.8    80.2
+      40%       183,258.4      15,271.5        64531         59.4    72.0
+      60%       226,583.9      18,882.0        61206         62.3    67.8
+      80%       257,290.3      21,440.9        60253         63.2    65.1
+
+--- 2. GENERATING CHARTS ---
+Saved: chart_tradeoff_curve.png
+Saved: chart_total_cost_scenarios.png
+
+--- 3. OPTIMAL DECISION MATRIX ---
+If Tote Cost is...   | Best Threshold  | Total Monthly Cost   | Savings vs Status Quo
+-------------------------------------------------------------------------------------
+€1.00                | 0%              | €203,011             | €114,532            
+€3.00                | 20%             | €355,429             | €82,620             
+€5.00                | 20%             | €499,785             | €58,770             
+€7.00                | 40%             | €634,975             | €44,086  
+
+
+==================================================
+   What If Family 1 in Separated zone (Shelves)
+==================================================
+
+Optimization results saved to 'optimal_allocation_fam1_shelves.csv'
+
+New Monthly Warehouse Cost: €70,673.70
+
+========================================
+ FINAL RESULTS (Scenario: Fam1 -> Shelves, Robust V2)
+========================================
+Total Store Cost:      €220,552.42
+Total Replen Hours:    18,379.4 h
+--------------------
+Total Totes Shipped:   55,275
+  > Small Totes:       8,046
+  > Big Totes:         47,229
+--------------------
+Gross Fill Rate:       68.7%
+
+
+--- SENSITIVITY RESULTS (Fam1 -> Shelves, ROBUST) ---
+Threshold  Store Cost (€)  Replen Hours  Total Totes  Fill Rate %     Pure %
+       0%      109123.296      9093.608        84419    44.887601 100.000000
+      20%      128820.600     10735.050        66528    57.356843  80.734428
+      40%      155354.424     12946.202        59270    64.405380  69.372364
+      60%      188290.128     15690.844        56179    67.639862  63.885082
+      80%      220551.360     18379.280        55275    68.655521  60.815920
+
+
+--- Generating Full Sensitivity Report (Scenario: Fam1 -> Shelves) ---
+
+--- 1. DETAILED SIMULATION RESULTS ---
+Threshold  Store Cost (€)  Replen Hours  Total Totes  Fill Rate %  Pure %
+       0%       109,123.3       9,093.6        84419         44.9   100.0
+      20%       128,820.6      10,735.0        66528         57.4    80.7
+      40%       155,354.4      12,946.2        59270         64.4    69.4
+      60%       188,290.1      15,690.8        56179         67.6    63.9
+      80%       220,551.4      18,379.3        55275         68.7    60.8
+
+--- 2. GENERATING CHARTS ---
+Saved: chart_tradeoff_curve_fam1_shelves.png
+Saved: chart_total_cost_scenarios_fam1_shelves.png
+
+--- 3. OPTIMAL DECISION MATRIX (Scenario: Fam1 -> Shelves) ---
+If Tote Cost is...   | Best Threshold  | Total Monthly Cost   | Savings vs Status Quo
+-------------------------------------------------------------------------------------
+€1.00                | 0%              | €193,542             | €82,284             
+€3.00                | 20%             | €328,405             | €57,972             
+€5.00                | 40%             | €451,704             | €45,222             
+€7.00                | 40%             | €570,244             | €37,232  
+
+============================================================
+ STRESS TEST RESULTS (Allocation Robustness, OVERFLOW FIXED)
+============================================================
+                    Scenario  Store Cost (€) Cost Delta %  Total Totes Totes Delta %  Fill Rate %
+       1. Baseline (History)         128,821        +0.0%        66528         +0.0%           57
+       2. Volume Boom (+20%)         129,006        +0.1%        68745         +3.3%           58
+ 3. High Volatility (+/-50%)          98,105       -23.8%        53483        -19.6%           54
+4. Fragmented (Small Orders)          96,289       -25.3%        52013        -21.8%           52
+
+============================================================
+ ADVANCED STRESS TEST RESULTS (ROBUST)
+============================================================
+                  Scenario       Type  Store Cost (€)  Total Totes  Fill Rate %
+                Scale 0.5x     Demand          79,735        29878           43
+                Scale 0.8x     Demand          71,119        36611           49
+                Scale 1.0x     Demand         128,820        66528           57
+                Scale 1.2x     Demand         129,006        68745           58
+                Scale 1.5x     Demand         127,840        80601           62
+                Scale 2.0x     Demand         122,243       112129           67
+Promo Spike (10% Items x3)        Mix         126,415        79035           61
+             Tote Cap -20% Constraint         125,322        78021           61
+             Tote Cap +20% Constraint         132,967        58660           55
+
+============================================================
+ MATRIX: Store Cost (€) per Threshold (ROBUST)
+============================================================
+Threshold                0%     20%     40%     60%     80%
+Scenario                                                   
+Baseline            109,123 128,821 155,354 188,290 220,551
+Fragmented (Small)   76,159  96,289 125,278 158,845 185,104
+Volatility (+/-50%)  76,850  98,105 128,678 161,437 184,746
+Volume Boom (+20%)  109,334 129,006 155,097 187,587 219,511
+
+============================================================
+ MATRIX: Total Totes per Threshold (ROBUST)
+============================================================
+Threshold               0%    20%    40%    60%    80%
+Scenario                                              
+Baseline             84419  66528  59270  56179  55275
+Fragmented (Small)   71231  52013  45306  42436  41592
+Volatility (+/-50%)  72830  53483  47296  44548  43747
+Volume Boom (+20%)   86619  68745  61481  58401  57565
